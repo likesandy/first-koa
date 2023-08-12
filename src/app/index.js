@@ -1,14 +1,13 @@
 const Koa = require('koa')
-const userRouter = require('../router/user.router')
 const bodyParser = require('koa-bodyparser')
-const pool = require('./database')
+const userRouter = require('../router/user.router')
+const loginRouter = require('../router/login.router')
+const registerRouter = require('../router')
 
 const app = new Koa()
 
 app.use(bodyParser())
-app.use(userRouter.routes())
-app.use(userRouter.allowedMethods())
-pool.getConnection()
+registerRouter(app)
 
 module.exports = app
 

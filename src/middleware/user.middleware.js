@@ -4,8 +4,8 @@ const { md5password } = require('../utils/md5-password')
 
 const verifyUser = async (ctx, next) => {
   const { name, password } = ctx.request.body
-  // 判断用户名或密码不能为空
-  if (!name || !password) {
+  // 判断用户名和密码不能为空
+  if (!name && !password) {
     return ctx.app.emit('error', NAME_OR_PASSWORD_IS_REQUIRED, ctx)
   }
 
