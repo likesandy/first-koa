@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const { PRIVATE_KEY } = require('../config/secret')
-const { UNAUTHORIZED } = require('../config/error')
 
 class loginController {
   sign(ctx, next) {
@@ -24,18 +23,8 @@ class loginController {
   }
 
   test(ctx, next) {
-    // 获取tokne
-    const token = ctx.header.authorization?.replace('Bearer ', '')
-    // 验证token
-    try {
-      const res = jwt.verify(token, PRIVATE_KEY, {
-        algorithms: ['RS256'],
-      })
-      ctx.body = {
-        message: '授权成功',
-      }
-    } catch (error) {
-      return ctx.app.emit('error', UNAUTHORIZED, ctx)
+    ctx.body = {
+      message: 'test/list',
     }
   }
 }
